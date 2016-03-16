@@ -83,17 +83,20 @@ float Person::getOrientation()
 void Person::setOrientation(float angle)
 {
     orientation = angle;
+	person_object.setRotation(angle);
 }
 
 void Person::setPosition(float x, float y)
 {
     position.x = x;
     position.y = y;
+	person_object.setPosition(x, y);
 }
 
 void Person::setPosition(const sf::Vector2f& pos)
 {
     position = pos;
+	person_object.setPosition(pos);
 }
 
 /*void Person::draw(sf::RenderWindow* window)
