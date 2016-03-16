@@ -1,10 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include "console.hpp"
+#include "human_factory.hpp"
+#include "venue.hpp"
 
 int main(int argc, char** argv) {
     
     sf::RenderWindow window(sf::VideoMode(640, 480), "Crowd Simulator");
     f32::Console console;
+	
+	Venue venue;
+	
+	venue.add_occupant(generate_human());
     
     while(window.isOpen()) {
 
@@ -21,8 +27,11 @@ int main(int argc, char** argv) {
 
         window.clear();
         window.draw(console);
+		window.draw(venue);
         window.display();
     }
     
     return 0;
 }
+
+
