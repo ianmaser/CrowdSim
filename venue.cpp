@@ -35,6 +35,8 @@ void Venue::add_occupant(Person &&person) {
 
 void Venue::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     // draw venue
+	for(const auto zone : zones)
+		target.draw(zone);
     for(const auto occupant : occupants)
         target.draw(occupant);
 }
@@ -44,5 +46,23 @@ void Venue::construct_from(const std::vector<std::string> &lines) {
 	auto iter = lines.begin();
 	std::stringstream sstream(*iter);
 	sstream >> name >> capacity;
-	std::cout << name << ' ' << capacity << std::endl;
+	++iter;
+	for(; iter != lines.end(); ++iter) {
+		sstream.str(*iter);
+		sstream.seekg(std::ios_base::beg);
+		std::string ident;
+		sstream >> ident;
+		if(ident != "en") {
+			std::vector<sf::Vector2f> points;
+			sf::Vector2f point;
+			char delimiter = ',';
+			do {
+				sstream >> point.x >> point.y >> delimiter;
+				points.push_back(point);
+			} while(delimiter != ';');
+			zones.emplace_back(Zone(ident, points));
+		} else {
+			/* handle entrance */
+		}
+	}
 }

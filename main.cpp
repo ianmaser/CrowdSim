@@ -10,6 +10,7 @@ int main(int argc, char** argv) {
 	
 	Venue venue;
 	
+	venue.load_from_file("phoenix.txt");
 	venue.add_occupant(generate_human());
     
     while(window.isOpen()) {
