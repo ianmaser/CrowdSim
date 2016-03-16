@@ -14,6 +14,8 @@ class Venue : public sf::Drawable {
     std::string name;
     std::size_t capacity;
     std::vector<Person> occupants;
+	
+	void construct_from(const std::vector<std::string> &lines);
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

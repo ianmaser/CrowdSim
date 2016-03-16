@@ -18,12 +18,12 @@ void Venue::load_from_file(std::string filename) {
     }
     file.close();
     
-    
+    construct_from(lines);
 }
 
 
 void Venue::add_occupant(Person person) {
-    if(occupants.size() < capacity_limit) {
+    if(occupants.size() < capacity) {
         occupants.push_back(person);
     }
 }
@@ -31,6 +31,11 @@ void Venue::add_occupant(Person person) {
 
 void Venue::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     // draw venue
-    for(occupant : occupants)
+    for(const auto occupant : occupants)
         target.draw(occupant);
+}
+
+
+void Venue::construct_from(const std::vector<std::string> &lines) {
+	
 }
