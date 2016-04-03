@@ -1,13 +1,16 @@
 #include "Person.h"
 #include <SFML/Graphics.hpp>
 
-Person::Person(int expected_satisfaction_, int current_satisfaction_, int ID_)
+int Person::nextID = 0;
+
+Person::Person(int expected_satisfaction_, int current_satisfaction_)
 {
     person_object.setRadius(5);
+    person_object.setRotation(90);
     comfort_zone.setRadius(10);
     expected_satisfaction = expected_satisfaction_;
     current_satisfaction = current_satisfaction_;
-    ID = ID_;
+    ID = nextID++;
     change_color();
 
 }
@@ -19,6 +22,16 @@ void Person::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 }
 
+
+void Person::turn_left(float angle)
+{
+    person_object.rotate(angle * -1);
+
+}
+void Person::turn_right(float angle)
+{
+    person_object.rotate(angle);
+}
 
 void Person::change_color()
 {
@@ -100,6 +113,12 @@ void Person::setPosition(const sf::Vector2f& pos)
 {
     window->draw(person_object);
 }*/
+
+float Person::get_Position()
+{
+    return position_.x;
+    return position_.y;
+}
 
 sf::Vector2f& Person::getPosition()
 {
